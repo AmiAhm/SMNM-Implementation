@@ -38,9 +38,9 @@ Implementation of the simulation study on `itses` general performance can be fou
 
 ## About
 
-Made in part of the research project component for the MSc in Statistics of Imperial College London (September 2021).
+Made in part of the research project component for the MSc in Statistics of Imperial College London.
 
-By: Amir Ahmed, Supervisor: Alastair Young
+By: Amir Ahmed, Supervisor: Alastair Young  (September 2021).
 
 
 
