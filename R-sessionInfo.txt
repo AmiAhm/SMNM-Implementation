@@ -1,0 +1,20 @@
+R version 4.1.0 (2021-05-18)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows >= 8 x64 (build 9200)
+
+Matrix products: default
+
+locale:
+[1] LC_COLLATE=Norwegian Bokmål_Norway.1252  LC_CTYPE=Norwegian Bokmål_Norway.1252    LC_MONETARY=Norwegian Bokmål_Norway.1252
+[4] LC_NUMERIC=C                             LC_TIME=Norwegian Bokmål_Norway.1252    
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] testthat_3.0.4   foreach_1.5.1    latex2exp_0.5.0  asus_1.0.0       itses_0.0.0.9000
+
+loaded via a namespace (and not attached):
+ [1] codetools_0.2-18  rprojroot_2.0.2   crayon_1.4.1      withr_2.4.2       MASS_7.3-54       R6_2.5.1          magrittr_2.0.1    cli_3.0.1        
+ [9] rlang_0.4.11      stringi_1.7.3     wavethresh_4.6.8  rstudioapi_0.13   doParallel_1.0.16 desc_1.3.0        iterators_1.0.13  tools_4.1.0      
+[17] stringr_1.4.0     pkgload_1.2.1     parallel_4.1.0    compiler_4.1.0    rwt_1.0.0         matlab_1.0.2     
