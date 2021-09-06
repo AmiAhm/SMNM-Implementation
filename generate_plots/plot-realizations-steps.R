@@ -12,7 +12,7 @@ mean.length <- 0.5
 sd <- 1
 m <- 50
 
-create.plots <- function(is, n, mean.length, sd, method, name,minimization.method = "numeric") {
+create.plots <- function(is, n, mean.length, sd, method, name,minimizationmethod = "numeric") {
   cha <- "a"
   pdf(name,
     width = 12, height = 8)
@@ -29,7 +29,7 @@ for(i in 1:length(is)) {
 
   iterative.res <- itses(y,
                          m = m,
-                          minimization.method   = minimization.method,
+                          minimizationmethod   = minimizationmethod,
                           sd = sd,
                           method = method,
                           debug = T)

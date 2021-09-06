@@ -29,7 +29,7 @@ for(i in 1:length(is)) {
   theta <- data$theta
 
   iterative.res <- itses(y,
-                          minimization.method   = "numeric",
+                          minimizationmethod   = "numeric",
                           sd = sd,
                          m = m,
                           method = method,

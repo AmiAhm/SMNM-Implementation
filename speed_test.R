@@ -29,13 +29,13 @@ for(i in 1:repetitions){
   res <- c(res, end_time - start_time)
 
   start_time <- Sys.time()
-  itses(y, method = "ST", minimization.method = "sampling")
+  itses(y, method = "ST", minimizationmethod = "sampling")
   end_time <- Sys.time()
   res <- c(res, end_time - start_time)
 
 
   start_time <- Sys.time()
-  itses(y, method = "HT", minimization.method = "sampling")
+  itses(y, method = "HT", minimizationmethod = "sampling")
   end_time <- Sys.time()
   res <- c(res, end_time - start_time)
 
