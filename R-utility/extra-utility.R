@@ -86,16 +86,53 @@ itses_saved <- function(y,
 
 itses_saved_speckle <- function(y, sd, savepath = NULL, ...){
   result <- itses(y,
-                max.threshold = Inf,
+                  max.threshold = Inf,
                   sd = sd,
+                  minimizationmethod = "sampling",
+                  noisetype = list(sample = function(b, theta){
+                    noise <- (1+rnorm(b*length(theta), sd = sd))
+                    y.star <- matrix(noise, ncol = b)*theta
+                    y.star
+                  }),
+                  ...
+  )
+  # Store result if save path given.
+  if(!is.null(savepath)) {
+    save(result, file = savepath)
+  }
+  result
+}
+
+# Function generate speckle noise
+
+
+
+
+
+
+
+itses_saved_speckle_custom <- function(y, ones, sd, savepath = NULL, ...){
+  y <-  y/ones
+  method <- function(y, lambda){
+                  l2 <- mean(abs(y))
+                  is.shrunk <- y/l2 < 1
+                  y[is.shrunk] <- y[is.shrunk]*lambda
+                  y[!is.shrunk] <- y[!is.shrunk]/lambda
+                  y
+                }
+  max.threshold <- 1.5*sd+1
+  result <- itses(y,
+                sd = sd,
+                method = method,
+                min.threshold = 1,
+                max.threshold = max.threshold,
                 minimizationmethod = "sampling",
                 noisetype = list(sample = function(b, theta){
                   noise <- (1+rnorm(b*length(theta), sd = sd))
                   y.star <- matrix(noise, ncol = b)*theta
                   y.star
-                }),
-                  ...
-  )
+                }, ...)
+                )
   # Store result if save path given.
   if(!is.null(savepath)) {
     save(result, file = savepath)
