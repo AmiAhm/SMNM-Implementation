@@ -12,13 +12,15 @@ mean.length <- 0.5
 sd <- 1
 m <- 50
 
-create.plots <- function(is, n, mean.length, sd, method, name,minimizationmethod = "numeric") {
+create.plots <- function(is, n, mean.length, sd, method, name,minimizationmethod = "numeric", show.loss.fun = T,
+                         height = 8, size.multiplier = 1, legend.outside = T) {
   cha <- "a"
   pdf(name,
-    width = 12, height = 8)
+    width = size.multiplier*12, height = size.multiplier*height)
 
-
-par(mfrow = c(length(is), 4),
+  cols <- 3
+if(legend.outside) cols <- 4
+par(mfrow = c(length(is), cols),
   mar=c(5, 2.8, 4, 0),
     mgp = c(1.8,1,0))
 
@@ -35,11 +37,15 @@ for(i in 1:length(is)) {
                           debug = T)
 
 
-  par(mar=c(0, 0, 0, 0))
-  plot(NULL ,xaxt='n',yaxt='n',bty='n',ylab='',xlab='', xlim=0:1, ylim=0:1)
-
-  if(i == 1) get.legend1(method, pos = "right")
-
+  if(legend.outside){
+    par(mar=c(0, 0, 0, 0))
+    plot(NULL ,xaxt='n',yaxt='n',bty='n',ylab='',xlab='', xlim=0:1, ylim=0:1)
+    }
+  if(i == 1){
+   if(legend.outside){
+     get.legend1(method, pos = "right", show.loss.fun = show.loss.fun)
+   }
+  }
   par(mar=c(5, 2.8, 4, 1),
     mgp = c(1.8,1,0))
 
@@ -47,15 +53,12 @@ for(i in 1:length(is)) {
   if(i == 1) inc.legend <- T
 
   cha <- plot.fun(iterative.res, theta, sd = 1,
-           cha = cha, inc.legend = inc.legend, inc.legend1 = F,
-            extend =  TRUE)$cha
+           cha = cha, inc.legend = inc.legend, inc.legend1 = !legend.outside,
+            extend =  TRUE, show.loss.fun = show.loss.fun)$cha
+
 
 }
-
-
 dev.off()
-
-
 }
 is <- 1:3
 create.plots(is, n, mean.length, sd , "ST",  'output/figures/st-main-sampling-steps.pdf',"sampling" )
@@ -63,3 +66,11 @@ create.plots(is, n, mean.length, sd , "HT", 'output/figures/ht-main-sampling-ste
 
 create.plots(is, n, mean.length, sd , "ST",  'output/figures/st-main-numeric-steps.pdf',"numeric" )
 create.plots(is, n, mean.length, sd , "HT", 'output/figures/ht-main-numeric-steps.pdf', "numeric")
+
+
+create.plots(8, n, 2, sd ,
+                    "ST",
+             'output/figures/st-main-numeric-steps-one.pdf',
+             "numeric",
+             show.loss.fun= F, height = 4, legend.outside = F, size.multiplier = 3/4)
+

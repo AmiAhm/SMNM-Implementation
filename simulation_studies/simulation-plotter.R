@@ -2,12 +2,17 @@
 plot.simulation.result <- function(data.path, out.path,
                                     mean.lengths = c(0.5,1,2),
                                    ns = c(10, 50, 500, 5000),
-                                   ratio.max = 5
+                                   ratio.max = 5,
+                                   full.a4 = T
 ) {
   load(data.path)
   df <- as.data.frame(result)
 
-  pdf(out.path, paper="a4", height = 13, width = 12.2)
+  if(full.a4){
+    pdf(out.path, paper="a4", height = 13, width = 12.2)
+  }else{
+    pdf(out.path, height = 19*length(ns)/4, width = 12.2*length(mean.lengths)/3)
+  }
   par(mfrow=c(length(ns),length(mean.lengths)))
   for(n in ns) {
     for(l in mean.lengths) {

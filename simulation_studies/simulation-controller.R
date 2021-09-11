@@ -38,6 +38,13 @@ plot.simulation.result(data.path = "output/main-simulation-data/simulation-unkno
 plot.simulation.result(data.path = "output/main-simulation-data/simulation-known_large.RData",
                      out.path = "output/figures/simulation-known_large-10k.pdf", ratio.max = 5, ns = 5e3)
 
+
+# # Small plot
+plot.simulation.result(data.path = "output/main-simulation-data/simulation-known-10k.RData",
+                       out.path = "output/figures/simulation-known-10k-small.pdf", n = 50, mean.lengths = c(0.5, 2),
+full.a4 = F)
+
+
 ## Verify simultion data
 library(testthat)
 test_that("Simulation data is healthy", {

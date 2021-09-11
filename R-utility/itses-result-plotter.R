@@ -138,7 +138,7 @@ if (inc.legend & inc.legend1) {
   itses.rr <- round(itses.rr, digits = 3)
 
   met <- "smp."
-  if(iterative.res$minimization.method == "numeric") {
+  if(iterative.res$minimizationmethod == "numeric") {
     met <- "numr."
   }
 title(paste0(cha, ") ",
