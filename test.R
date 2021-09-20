@@ -30,8 +30,8 @@ lambdas <- seq(0, 1.3, length.out = 100)
 risks <- sapply(lambdas, function(lambda) {
   mean(sapply(1:b, function(i) itses:::loss.w.st(theta, y.star[, i], lambda)))
 })
-pdf("output/figures/speckle-example.pdf", height = 8, width = 4)
-par(mfrow = c(2,1))
+pdf("output/figures/speckle-example.pdf", height = 6, width = 6)
+par(mfrow = c(1,1))
 plot(result$iteration_result[[length(result$iteration_result)]][,1], result$iteration_result[[length(result$iteration_result)]][,2],
      xlim = c(0, .65),
      ylim = c(0, 1300),
@@ -47,10 +47,10 @@ j <-which.min(risks)
 abline(v=lambdas[j], col = "purple", lty = 2)
 #abline(v = itses(y, sparse.mad = F)$lambda, lty = 2)
 
-par(mar=c(0, 0, 0, 0))
-plot(NULL ,xaxt='n',yaxt='n',bty='n',ylab='',xlab='', xlim=0:1, ylim=0:1)
+#par(mar=c(0, 0, 0, 0))
+#plot(NULL ,xaxt='n',yaxt='n',bty='n',ylab='',xlab='', xlim=0:1, ylim=0:1)
 
-legend("top", legend = c("Oracle risk",
+legend("bottomright", legend = c("Oracle risk",
                                "Estimated risk",
                                "Oracle threshold",
                                "Speckle ITSES-ST"

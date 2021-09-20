@@ -50,7 +50,7 @@ plot.fun <- function(iterative.res,
                      name = NULL, theta2 = F,
                      show.method = T, show.loss.fun = T,
                  sd.true = 1, mean.length = NULL, cha = "a", loss.threshold = F, y.min = -2, show.n.its = T,
-                 inc.legend = F, inc.legend1 = F,  method = "ST", risk.max = 40, y.max = 5, extend = F,
+                 inc.legend = F, inc.legend1 = F,  method = "ST", risk.max = 40, y.max = 5, extend = F, include.risk.th  = T,
 universal = T) {
   y <- iterative.res$y
   n <- length(y)
@@ -178,6 +178,9 @@ title(paste0(cha, ") ",
   abline(h=risk.oracle, col = "purple")
 
   cha <- getnextchar(cha)
+
+
+  if(!include.risk.th) return(list(cha=cha))
 
   risks <- sapply(1:length(iterative.res$iteration_result), function(i) min(iterative.res$iteration_result[[i]][,2]))
   true.risks <- sapply(iterative.res$lambdas, function(lambda) sd.true^2*risk(theta/sd.true, lambda/sd.true))

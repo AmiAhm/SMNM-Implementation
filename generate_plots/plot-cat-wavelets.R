@@ -52,8 +52,4 @@ for(j in 1:length(files)) {
 
 }
 
-par(mar=c(0, 0, 0, 0))
-  plot(NULL ,xaxt='n',yaxt='n',bty='n',ylab='',xlab='', xlim=0:1, ylim=0:1)
-  get.legend1("ST", loss.threshold = F, show.loss.fun = F, universal = F, pos = "center")
-
 dev.off()

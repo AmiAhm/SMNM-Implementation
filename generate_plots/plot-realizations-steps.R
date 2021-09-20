@@ -13,14 +13,18 @@ sd <- 1
 m <- 50
 
 create.plots <- function(is, n, mean.length, sd, method, name,minimizationmethod = "numeric", show.loss.fun = T,
-                         height = 8, size.multiplier = 1, legend.outside = T) {
+                         height = 8, size.multiplier = 1, legend.outside = T, include.risk.th  = T) {
   cha <- "a"
+
+  width.multiplier <- 1
+  if(!include.risk.th) width.multiplier  <- 2/3
   pdf(name,
-    width = size.multiplier*12, height = size.multiplier*height)
+    width = width.multiplier*size.multiplier*12, height = size.multiplier*height)
 
   cols <- 3
 if(legend.outside) cols <- 4
-par(mfrow = c(length(is), cols),
+if(!include.risk.th) cols <- cols - 1
+  par(mfrow = c(length(is), cols),
   mar=c(5, 2.8, 4, 0),
     mgp = c(1.8,1,0))
 
@@ -54,7 +58,7 @@ for(i in 1:length(is)) {
 
   cha <- plot.fun(iterative.res, theta, sd = 1,
            cha = cha, inc.legend = inc.legend, inc.legend1 = !legend.outside,
-            extend =  TRUE, show.loss.fun = show.loss.fun)$cha
+            extend =  TRUE, show.loss.fun = show.loss.fun, include.risk.th  = include.risk.th )$cha
 
 
 }
@@ -72,5 +76,5 @@ create.plots(8, n, 2, sd ,
                     "ST",
              'output/figures/st-main-numeric-steps-one.pdf',
              "numeric",
-             show.loss.fun= F, height = 4, legend.outside = F, size.multiplier = 3/4)
+             show.loss.fun= F, height = 4, legend.outside = F, size.multiplier = 2*3/4, include.risk.th = F)
 
